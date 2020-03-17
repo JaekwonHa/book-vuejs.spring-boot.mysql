@@ -4,10 +4,13 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'App'
-  }
+export default {
+  name: 'App'
+}
 </script>
 
-<style>
+<style lang="scss">
+  html {
+    font-size: 14px;
+  }
 </style>
