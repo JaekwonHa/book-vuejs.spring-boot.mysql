@@ -15,11 +15,11 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - mysql_data:/var/lib/mysql
+      - task_agile_mysql_data:/var/lib/mysql
 
 secrets:
   mysql_secret:
     file: mysql_secret
 
 volumes:
-  mysql_data:
+  task_agile_mysql_data:

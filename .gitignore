@@ -32,3 +32,6 @@ build/
 
 application-dev.properties
 mysql_secret
+
+src/main/resources/static/*
+src/main/resources/templates/*
