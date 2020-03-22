@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.taskagile</groupId>
-    <artifactId>app</artifactId>
+    <artifactId>web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TaskAgile</name>
     <description>Open source task management tool</description>
@@ -42,6 +42,10 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
