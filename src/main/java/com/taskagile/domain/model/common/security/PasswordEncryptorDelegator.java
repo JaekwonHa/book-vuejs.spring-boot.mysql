@@ -8,6 +8,6 @@ public class PasswordEncryptorDelegator implements PasswordEncryptor {
     @Override
     public String encrypt(String rawPassword) {
         // TODO implements this
-        return null;
+        return rawPassword;
     }
 }
