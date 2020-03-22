@@ -1,9 +1,9 @@
-package com.taskagile.web;
+package com.taskagile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.taskagile")
+@SpringBootApplication
 public class TaskAgileApplication {
 
     public static void main(String[] args) {

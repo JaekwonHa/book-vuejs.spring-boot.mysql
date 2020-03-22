@@ -23,7 +23,7 @@ public class RegistrationPayloadTests {
 
     @Test
     public void validate_blankPayload_shouldFail() {
-        RegistrationPayload payload = new RegistrationPayload();
+        RegistrationPayload payload = new RegistrationPayload(null, null, null);
         Set<ConstraintViolation<RegistrationPayload>> violations = validator.validate(payload);
         assertEquals(3, violations.size());
     }
