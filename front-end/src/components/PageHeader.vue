@@ -118,9 +118,6 @@ export default {
         border: 1px solid #eee;
         border-radius: 5px;
       }
-      input:focus {
-        border: 1px solid #377EF6;
-      }
     }
   }
   .dropdown-toggle {
