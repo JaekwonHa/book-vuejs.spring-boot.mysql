@@ -134,7 +134,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>front-end test</id>
+                        <id>front-end unit test</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -171,7 +171,7 @@
                             <executable>npm</executable>
                             <arguments>
                                 <argument>run</argument>
-                                <argument>test:e2e</argument>
+                                <argument>test:integration</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -202,7 +202,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy front-end static assets</id>
+                        <id>copy front-end assets</id>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -227,7 +227,8 @@
                             <outputDirectory>${basedir}/target/classes/templates</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/src/main/resources/templates</directory>
+                                    <directory>front-end/dist</directory>
+                                    <includes><include>index.html</include></includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -242,7 +243,8 @@
                             <outputDirectory>${basedir}/target/classes/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/src/main/resources/static</directory>
+                                    <directory>front-end/dist</directory>
+                                    <includes><include>index.html</include></includes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -255,10 +257,13 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>${basedir}/src/main/resources/static</directory>
+                            <directory>${basedir}/src/main/resources/static/static</directory>
                         </fileset>
                         <fileset>
                             <directory>${basedir}/src/main/resources/templates</directory>
+                            <includes>
+                                <include>index.html</include>
+                            </includes>
                         </fileset>
                     </filesets>
                 </configuration>

@@ -15,7 +15,7 @@ describe('services/authentication', function () {
     expect.assertions(1)
     moxios.wait(() => {
       let request = moxios.requests.mostRecent()
-      expect(request.url).toEqual('/authenticates')
+      expect(request.url).toEqual('/authentications')
       request.respondWith({
         status: 200,
         response: { result: 'success' }

@@ -2,6 +2,7 @@ package com.taskagile.web.apis.authenticate;
 
 import com.taskagile.utils.JsonUtils;
 import com.taskagile.web.results.ApiResult;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
@@ -16,6 +17,7 @@ public class SimpleAuthenticationFailureHandler implements AuthenticationFailure
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
         ApiResult failure;
         if (e instanceof BadCredentialsException) {
             failure = ApiResult.message("Invalid credentials");
