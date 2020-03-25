@@ -5,20 +5,29 @@
       <div class="boards-section">
         <h2 class="section-title">Personal Boards</h2>
         <div class="boards d-flex align-content-start flex-wrap">
-          <div class="board list-inline-item">
-            <h3>vuejs.psring-boot.mysql</h3>
-            <p>
-              An implementation of TaskAgile application with Vue.js, Spring Boot, and MySQL
-            </p>
+          <div class="board list-inline-item" v-for="board in personalBoards"
+               v-bind:key="board.id" @click="openBoard(board)">
+            <h3>{{ board.name }}</h3>
+            <p>{{ board.description }}</p>
           </div>
-          <div class="board add list-inline-item">
+          <div class="board add list-inline-item" @click="createBoard()">
             <font-awesome-icon icon="plus"/>
             <div>Create new Board</div>
           </div>
         </div>
       </div>
+      <div class="boards-section" v-for="team in teamBoards" v-bind:key="team.id">
+        <h2 class="section-title">{{ team.name }}</h2>
+        <div class="boards d-flex align-content-start flex-wrap">
+          <div class="board list-inline-item" v-for="board in team.boards"
+               v-bind:key="board.id" @click="openBoard(board)">
+            <h3>{{ board.description }}</h3>
+            <p>{{ board.description }}</p>
+          </div>
+        </div>
+      </div>
       <div class="create-team-wrapper">
-        <button class="btn btn-link">+ Create New Team</button>
+        <button class="btn btn-link" @click="createTeam()">+ Create New Team</button>
       </div>
     </div>
   </div>
@@ -26,10 +35,27 @@
 
 <script>
 import PageHeader from "../components/PageHeader";
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HomePage',
+  computed: {
+    ...mapGetters([
+      'personalBoards',
+      'teamBoards'
+    ])
+  },
   components: {
     PageHeader
+  },
+  methods: {
+    openBoard(board) {
+      this.$router.push({name: 'board', params: {boardId: board.id}})
+    },
+    createBoard(team) {
+    },
+    createTeam() {
+    }
   }
 }
 </script>
