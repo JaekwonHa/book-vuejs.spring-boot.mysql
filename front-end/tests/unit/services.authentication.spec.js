@@ -45,12 +45,14 @@ describe('services/authentication', function () {
       let request = moxios.requests.mostRecent()
       expect(request).toBeTruthy()
       request.reject({
-        stats: 400,
-        response: { message: 'Bad request' }
+        response: {
+          status: 400,
+          data: {message: 'Bad request'}
+        }
       })
     })
     return authenticationService.authenticate().catch(error => {
-      expect(error.response.message).toEqual('Bad request')
+      expect(error.message).toEqual('Bad request')
     })
   });
 });

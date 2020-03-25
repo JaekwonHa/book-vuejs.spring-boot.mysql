@@ -17,7 +17,7 @@ describe('services/registration', () => {
       expect(request).toBeTruthy()
       request.respondWith({
         status: 200,
-        response: {result: 'success'}
+        response: { result: 'success' }
       })
     })
     return registrationService.register().then(data => {
@@ -31,12 +31,14 @@ describe('services/registration', () => {
       let request = moxios.requests.mostRecent()
       expect(request).toBeTruthy()
       request.reject({
-        status: 400,
-        response: {message: 'Bad request'}
+        response: {
+          status: 400,
+          data: {message: 'Bad request'}
+        }
       })
     })
     return registrationService.register().catch(error => {
-      expect(error.response.message).toEqual('Bad request')
+      expect(error.message).toEqual('Bad request')
     })
   });
 
@@ -47,7 +49,7 @@ describe('services/registration', () => {
       expect(request).toBeTruthy()
       request.respondWith({
         status: 200,
-        response: {result: 'success'}
+        response: { result: 'success' }
       })
     })
     return registrationService.register()
