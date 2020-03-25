@@ -30,8 +30,10 @@ build/
 ### VS Code ###
 .vscode/
 
-application-dev.properties
+### Application specific ###
 mysql_secret
-
-src/main/resources/static/*
-src/main/resources/templates/*
+application-dev.properties
+src/main/resources/static/css/
+src/main/resources/static/favicon.ico
+src/main/resources/static/js/
+src/main/resources/templates/index.html
