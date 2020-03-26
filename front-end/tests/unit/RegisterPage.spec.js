@@ -25,10 +25,7 @@ describe('RegisterPage.vue', () => {
     wrapper = mount(RegisterPage, {
       localVue,
       router,
-      i18n,
-      mocks: {
-        $t: (msg) => i18n.t(msg)
-      }
+      i18n
     })
     fieldUsername = wrapper.find('#username')
     fieldEmailAddress = wrapper.find('#emailAddress')
