@@ -21,12 +21,12 @@ public class BoardMember {
         return boardMember;
     }
 
-    public long getBoardId() {
-        return id.boardId;
+    public BoardId getBoardId() {
+        return id.getBoardId();
     }
 
-    public long getUserId() {
-        return id.userId;
+    public UserId getUserId() {
+        return id.getUserId();
     }
 
     @Override
