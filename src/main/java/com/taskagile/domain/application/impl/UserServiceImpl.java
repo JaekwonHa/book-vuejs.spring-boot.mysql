@@ -2,9 +2,9 @@ package com.taskagile.domain.application.impl;
 
 import com.taskagile.domain.application.UserService;
 import com.taskagile.domain.application.commands.RegistrationCommand;
-import com.taskagile.domain.model.common.event.DomainEventPublisher;
-import com.taskagile.domain.model.common.mail.MailManager;
-import com.taskagile.domain.model.common.mail.MessageVariable;
+import com.taskagile.domain.common.event.DomainEventPublisher;
+import com.taskagile.domain.common.mail.MailManager;
+import com.taskagile.domain.common.mail.MessageVariable;
 import com.taskagile.domain.model.user.*;
 import com.taskagile.domain.model.user.events.UserRegisteredEvent;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
             command.getPassword());
 
         SendWelcomeMessage(newUser);
-        domainEventPublisher.publish(new UserRegisteredEvent(newUser));
+        domainEventPublisher.publish(new UserRegisteredEvent(this, newUser));
     }
 
     private void SendWelcomeMessage(User user) {

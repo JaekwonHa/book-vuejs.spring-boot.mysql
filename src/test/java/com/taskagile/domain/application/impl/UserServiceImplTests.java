@@ -1,9 +1,9 @@
 package com.taskagile.domain.application.impl;
 
 import com.taskagile.domain.application.commands.RegistrationCommand;
-import com.taskagile.domain.model.common.event.DomainEventPublisher;
-import com.taskagile.domain.model.common.mail.MailManager;
-import com.taskagile.domain.model.common.mail.MessageVariable;
+import com.taskagile.domain.common.event.DomainEventPublisher;
+import com.taskagile.domain.common.mail.MailManager;
+import com.taskagile.domain.common.mail.MessageVariable;
 import com.taskagile.domain.model.user.*;
 import com.taskagile.domain.model.user.events.UserRegisteredEvent;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -154,7 +154,7 @@ class UserServiceImplTests {
             MessageVariable.from("user", newUser)
         );
 
-        verify(eventPublisherMock).publish(new UserRegisteredEvent(newUser));
+        verify(eventPublisherMock).publish(new UserRegisteredEvent(this, newUser));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.common.mail;
+package com.taskagile.domain.common.mail;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

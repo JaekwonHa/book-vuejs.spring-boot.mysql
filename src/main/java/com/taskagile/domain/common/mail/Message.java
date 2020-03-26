@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.common.mail;
+package com.taskagile.domain.common.mail;
 
 public interface Message {
 

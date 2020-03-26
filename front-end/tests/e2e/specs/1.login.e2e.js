@@ -24,7 +24,7 @@ module.exports = {
 
     loginPage
       .assert.visible('@formError')
-      .assert.containsText('@formError', 'Request failed with status code 401')
+      .assert.containsText('@formError', 'Request not authorized.')
 
     browser
       .assert.urlEquals(browser.launchUrl + 'login')

@@ -1,15 +1,15 @@
 import meService from '@/services/me'
 
 export const getMyData = ({ commit }) => {
-  meService.getMyData().then(then => {
+  meService.getMyData().then(data => {
     commit('updateMyData', data)
   })
 }
 
-export const addTeam = ({commit}, team) => {
+export const addTeam = ({ commit }, team) => {
   commit('addTeam', team)
 }
 
-export const addBoard = ({commit}, board) => {
+export const addBoard = ({ commit }, board) => {
   commit('addBoard', board)
 }

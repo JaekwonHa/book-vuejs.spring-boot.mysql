@@ -1,5 +1,7 @@
 package com.taskagile.domain.model.common.mail;
 
+import com.taskagile.domain.common.mail.AsyncMailer;
+import com.taskagile.domain.common.mail.SimpleMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

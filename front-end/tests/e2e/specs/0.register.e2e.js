@@ -24,7 +24,7 @@ module.exports = {
     fileContent += '\n/* eslint-enable */\n'
     rw.writeFileSync(userDataPath, fileContent, 'utf8')
   },
-  'register path renders elements': function (browser) {
+  'register page renders elements': function (browser) {
     const registerPage = browser.page.RegisterPage()
 
     registerPage

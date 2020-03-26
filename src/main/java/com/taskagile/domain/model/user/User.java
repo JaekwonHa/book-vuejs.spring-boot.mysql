@@ -33,11 +33,8 @@ public class User {
     @Column(name = "created_date", nullable = false)
     private Date createdDate;
 
-    public User() {
-    }
-
     /**
-     * Create new user during registration
+     * Create new user
      */
     public static User create(String username, String emailAddress, String password) {
         User user = new User();
@@ -55,8 +52,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
+    public UserId getId() {
+        return new UserId(id);
     }
 
     public String getUsername() {

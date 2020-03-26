@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.common.security;
+package com.taskagile.domain.common.security;
 
 public interface PasswordEncryptor {
     /**

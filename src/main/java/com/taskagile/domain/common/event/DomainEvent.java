@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.common.event;
+package com.taskagile.domain.common.event;
 
 import org.springframework.context.ApplicationEvent;
 

@@ -1,6 +1,6 @@
 package com.taskagile.domain.model.user.events;
 
-import com.taskagile.domain.model.common.event.DomainEvent;
+import com.taskagile.domain.common.event.DomainEvent;
 import com.taskagile.domain.model.user.User;
 import org.springframework.util.Assert;
 
@@ -11,8 +11,8 @@ public class UserRegisteredEvent extends DomainEvent {
 
     private User user;
 
-    public UserRegisteredEvent(User user) {
-        super(user);
+    public UserRegisteredEvent(Object source, User user) {
+        super(source);
         Assert.notNull(user, "Parameter `user` must not be null");
         this.user = user;
     }

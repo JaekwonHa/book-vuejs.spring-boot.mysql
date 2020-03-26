@@ -1,6 +1,6 @@
 package com.taskagile.domain.model.user;
 
-import com.taskagile.domain.model.common.security.PasswordEncryptor;
+import com.taskagile.domain.common.security.PasswordEncryptor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;

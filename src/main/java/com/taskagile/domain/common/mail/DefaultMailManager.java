@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.common.mail;
+package com.taskagile.domain.common.mail;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

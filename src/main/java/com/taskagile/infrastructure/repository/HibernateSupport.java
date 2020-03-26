@@ -4,9 +4,9 @@ import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 
-abstract class HibernateSupport {
+abstract class HibernateSupport<T> {
 
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public HibernateSupport(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -14,5 +14,10 @@ abstract class HibernateSupport {
 
     Session getSession() {
         return entityManager.unwrap(Session.class);
+    }
+
+    public void save(T object) {
+        entityManager.persist(object);
+        entityManager.flush();
     }
 }

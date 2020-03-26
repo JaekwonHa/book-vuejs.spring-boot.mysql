@@ -11,6 +11,7 @@
             <div class="filed-error" v-if="$v.form.username.$dirty">
               <div class="error" v-if="!$v.form.username.required">Username is required</div>
               <div class="error" v-if="!$v.form.username.alphaNum">Username can only contain letters and numbers</div>
+              <div class="error" v-if="!$v.form.username.minLength">Username must have at least {{$v.form.username.$params.minLength.min}} letters.</div>
               <div class="error" v-if="!$v.form.username.maxLength">Username must have at least {{$v.form.username.$params.minLength.min}} letters</div>
             </div>
           </div>

@@ -1,5 +1,9 @@
 package com.taskagile.domain.model.common.mail;
 
+import com.taskagile.domain.common.mail.DefaultMailManager;
+import com.taskagile.domain.common.mail.Mailer;
+import com.taskagile.domain.common.mail.Message;
+import com.taskagile.domain.common.mail.MessageVariable;
 import freemarker.template.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
