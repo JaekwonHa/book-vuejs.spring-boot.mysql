@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import RegisterPage from '@/views/RegisterPage'
 import Vuelidate from "vuelidate";
 import registrationService from '@/services/registration'
+import { i18n } from '@/i18n'
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
@@ -23,7 +24,11 @@ describe('RegisterPage.vue', () => {
   beforeEach(() => {
     wrapper = mount(RegisterPage, {
       localVue,
-      router
+      router,
+      i18n,
+      mocks: {
+        $t: (msg) => i18n.t(msg)
+      }
     })
     fieldUsername = wrapper.find('#username')
     fieldEmailAddress = wrapper.find('#emailAddress')
@@ -42,7 +47,7 @@ describe('RegisterPage.vue', () => {
   })
 
   it('should render correct contents', () => {
-    expect(wrapper.find('.logo').attributes().src).toEqual('/static/images/logo.png')
+    expect(wrapper.find('.logo').attributes().src).toEqual('/images/logo.png')
     expect(wrapper.find('.tagline').text()).toEqual('Open source task management tool')
     expect(fieldUsername.element.value).toEqual('')
     expect(fieldEmailAddress.element.value).toEqual('')

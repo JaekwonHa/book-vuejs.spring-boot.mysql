@@ -78,7 +78,7 @@ describe('utils/error-parser.js', () => {
         status: 500,
         statusText: 'internal Server Error',
         data: {
-          message: 'This is rephrased error message.'
+          message: 'This is rephrased error message. Please try again later.'
         }
       }
     }

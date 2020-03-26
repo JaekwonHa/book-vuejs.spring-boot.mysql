@@ -1,5 +1,5 @@
 export default {
-  updateMyData(state, data) {
+  updateMyData (state, data) {
     state.user.name = data.user.name
     state.teams = data.teams
     state.boards = data.boards
