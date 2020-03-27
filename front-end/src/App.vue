@@ -10,11 +10,27 @@ export default {
 </script>
 
 <style lang="scss">
-  html {
+  html, body {
+    height: 100%;
     font-size: 14px;
+  }
+  #app, .page {
+    height: 100%;
+    position: relative;
+  }
+  .page {
+    display: flex;
+    flex-direction: column;
   }
   .public.container {
     max-width: 900px;
+  }
+  input.form-control:focus,
+  textarea.form-control:focus {
+    border: 1px solid #377EF6 !important;
+  }
+  .btn-cancel {
+    color: #666 !important;
   }
   .public {
     .form {
@@ -33,10 +49,42 @@ export default {
       }
     }
   }
-  .filed-error {
+  .field-error {
     .error {
       display: block;
       color: #ff0000;
+    }
+  }
+  .modal {
+    .modal-dialog {
+      -webkit-transform: translate(0,-25%);
+      -o-transform: translate(0,-25%);
+      transform: translate(0,-25%);
+      top: 25%;
+      margin: 0 auto;
+      .modal-header {
+        border-bottom: none;
+        padding: 1rem 1rem .5rem;
+        .modal-title {
+          font-size: 1rem;
+        }
+      }
+      .modal-body {
+        padding-bottom: 0;
+        textarea {
+          resize: none;
+          height: 100px;
+        }
+      }
+      .modal-footer {
+        justify-content: start;
+        border-top: none;
+        padding-top: 0;
+        padding-bottom: 1.5rem;
+        .btn-cancel {
+          color: #666;
+        }
+      }
     }
   }
 </style>

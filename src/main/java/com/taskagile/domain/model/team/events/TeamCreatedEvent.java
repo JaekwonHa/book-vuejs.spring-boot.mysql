@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.team.event;
+package com.taskagile.domain.model.team.events;
 
 import com.taskagile.domain.common.event.DomainEvent;
 import com.taskagile.domain.model.team.Team;

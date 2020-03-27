@@ -77,7 +77,7 @@ class UserServiceImplTests {
     @Test
     public void loadUserByUsername_existUsername_shouldSucceed() throws IllegalAccessException {
         String existUsername = "ExistUsername";
-        User foundUser = User.create(existUsername, "user@taskagile.com", "EncrytedPassword!");
+        User foundUser = User.create(existUsername, "user@taskagile.com", "Test", "User", "EncryptedPassword!");
         foundUser.updateName("Test", "User");
 
         // Found user from the database should have id. And since no setter of
@@ -124,10 +124,13 @@ class UserServiceImplTests {
         String username = "sunny";
         String emailAddress = "existing@taskagile.com";
         String password = "MyPassword!";
-        doThrow(EmailAddressExistsException.class).when(registrationManagementMock)
-            .register(username, emailAddress, password);
+        String firstName = "Sunny";
+        String lastName = "Hu";
 
-        RegistrationCommand command = new RegistrationCommand(username, emailAddress, password);
+        doThrow(EmailAddressExistsException.class).when(registrationManagementMock)
+            .register(username, emailAddress, firstName, lastName, password);
+
+        RegistrationCommand command = new RegistrationCommand(username, emailAddress, firstName, lastName, password);
 
         assertThatThrownBy(() -> {
             instance.register(command);
@@ -139,11 +142,13 @@ class UserServiceImplTests {
         String username = "sunny";
         String emailAddress = "sunny@taskagile.com";
         String password = "MyPassword!";
-        User newUser = User.create(username, emailAddress, password);
-
-        when(registrationManagementMock.register(username, emailAddress, password))
+        String firstName = "Sunny";
+        String lastName = "Hu";
+        User newUser = User.create(username, emailAddress, firstName, lastName, password);
+        when(registrationManagementMock.register(username, emailAddress, firstName, lastName, password))
             .thenReturn(newUser);
-        RegistrationCommand command = new RegistrationCommand(username, emailAddress, password);
+
+        RegistrationCommand command = new RegistrationCommand(username, emailAddress, firstName, lastName, password);
 
         instance.register(command);
 

@@ -79,6 +79,10 @@ public class Board extends AbstractBaseEntity {
         return createdDate;
     }
 
+    public boolean isPersonal() {
+        return teamId == null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

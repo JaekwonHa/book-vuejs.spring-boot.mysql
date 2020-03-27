@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
     private static final long serialVersionUID = -538781580460070724L;
@@ -36,13 +36,13 @@ public class User {
     /**
      * Create new user
      */
-    public static User create(String username, String emailAddress, String password) {
+    public static User create(String username, String emailAddress, String firsName, String lastName, String password) {
         User user = new User();
         user.username = username;
         user.emailAddress = emailAddress;
         user.password = password;
-        user.firstName = "";
-        user.lastName = "";
+        user.firstName = firsName;
+        user.lastName = lastName;
         user.createdDate = new Date();
         return user;
     }
@@ -78,6 +78,10 @@ public class User {
 
     public Date getCreatedDate() {
         return createdDate;
+    }
+
+    public String getInitials() {
+        return (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
     }
 
     @Override

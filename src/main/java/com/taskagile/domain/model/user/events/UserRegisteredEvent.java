@@ -38,7 +38,7 @@ public class UserRegisteredEvent extends DomainEvent {
     public String toString() {
         return "UserRegisteredEvent{" +
             "user='" + user + '\'' +
-            "timestamp='" +getTimestamp() + '\'' +
+            "timestamp='" + getTimestamp() + '\'' +
             '}';
     }
 }

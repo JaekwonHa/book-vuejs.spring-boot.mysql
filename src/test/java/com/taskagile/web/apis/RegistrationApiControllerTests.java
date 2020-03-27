@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { SecurityConfiguration.class, RegistrationApiController.class })
+@ContextConfiguration(classes = {SecurityConfiguration.class, RegistrationApiController.class})
 @WebMvcTest(RegistrationApiController.class)
 @ActiveProfiles("test")
 class RegistrationApiControllerTests {
@@ -42,7 +42,7 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_existsUsername_shouldFailAndReturn400() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("exist", "test@tasksgile.com", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload("exist", "test@tasksgile.com", "User", "Test", "MyPassword!");
 
         doThrow(UsernameExistsException.class)
             .when(serviceMock)
@@ -58,7 +58,7 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_existsEmail_shouldFailAndReturn400() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("userName", "exists@tasksgile.com", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload("userName", "exists@tasksgile.com", "User", "Test", "MyPassword!");
 
         doThrow(EmailAddressExistsException.class)
             .when(serviceMock)
@@ -74,7 +74,7 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_validPayload_shouldSucceedAndReturn201() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("sunny", "sunny@tasksgile.com", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload("sunny", "sunny@tasksgile.com", "User", "Test", "MyPassword!");
 
         doNothing().when(serviceMock)
             .register(payload.toCommand());

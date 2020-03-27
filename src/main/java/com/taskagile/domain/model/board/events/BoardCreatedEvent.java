@@ -1,4 +1,4 @@
-package com.taskagile.domain.model.board.event;
+package com.taskagile.domain.model.board.events;
 
 import com.taskagile.domain.common.event.DomainEvent;
 import com.taskagile.domain.model.board.Board;

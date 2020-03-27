@@ -37,6 +37,8 @@ public class UserServiceImpl implements UserService {
         User newUser = registrationManagement.register(
             command.getUsername(),
             command.getEmailAddress(),
+            command.getFirstName(),
+            command.getLastName(),
             command.getPassword());
 
         SendWelcomeMessage(newUser);
@@ -67,5 +69,10 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("No user found by `" + username + "`");
         }
         return new SimpleUser(user);
+    }
+
+    @Override
+    public User findById(UserId userId) {
+        return userRepository.findById(userId);
     }
 }

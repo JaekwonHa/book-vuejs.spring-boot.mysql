@@ -33,6 +33,8 @@ module.exports = {
       .assert.visible('@usernameInput')
       .assert.visible('@emailAddressInput')
       .assert.visible('@passwordInput')
+      .assert.visible('@firstNameInput')
+      .assert.visible('@lastNameInput')
       .assert.visible('@submitButton')
       .assert.hidden('@formError')
 
@@ -57,7 +59,7 @@ module.exports = {
 
     registerPage
       .navigate()
-      .register(user.username, user.emailAddress, user.password)
+      .register(user.username, user.emailAddress, user.firstName, user.lastName, user.password)
 
     browser.pause(2000)
 
