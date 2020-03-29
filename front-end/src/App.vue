@@ -5,7 +5,13 @@
 </template>
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.$bus.$on('myDataFetched', myData => {
+      // Initializing the real time connection
+      this.$rt.init(myData.settings.realTimeServerUrl, myData.user.token)
+    })
+  }
 }
 </script>
 

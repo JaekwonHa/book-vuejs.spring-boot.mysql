@@ -27,7 +27,7 @@ class AuthenticationFilterTest {
         MockHttpServletRequest request = new MockHttpServletRequest("POST", "/api/authentications");
         AuthenticationFilter filter = new AuthenticationFilter();
         filter.setAuthenticationManager(authenticationManagerMock);
-        assertThatExceptionOfType(InsufficientAuthenticationException.class).isThrownBy(() -> filter.attemptAuthentication(request, new MockHttpServletResponse()));
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> filter.attemptAuthentication(request, new MockHttpServletResponse()));
     }
 
     @Test
@@ -36,7 +36,7 @@ class AuthenticationFilterTest {
         request.setContent("username=testusername&password=TestPassword!".getBytes());
         AuthenticationFilter filter = new AuthenticationFilter();
         filter.setAuthenticationManager(authenticationManagerMock);
-        assertThatExceptionOfType(InsufficientAuthenticationException.class).isThrownBy(() -> filter.attemptAuthentication(request, new MockHttpServletResponse()));
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> filter.attemptAuthentication(request, new MockHttpServletResponse()));
     }
 
     @Test
