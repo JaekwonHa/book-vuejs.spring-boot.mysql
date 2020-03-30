@@ -154,7 +154,9 @@ export default {
         dismissAddListForm = false
       }
       if (dismissAddCardForm) {
-        this.cardLists.forEach((cardList) => { cardList.cardForm.open = false })
+        this.cardLists.forEach((cardList) => {
+          cardList.cardForm.open = false
+        })
       }
       if (dismissAddListForm) {
         this.addListForm.open = false
@@ -195,16 +197,13 @@ export default {
         return
       }
       const card = {
-        boardId: this.boardId,
+        boardId: this.board.id,
         cardListId: cardList.id,
         title: cardList.cardForm.title,
         position: cardList.cards.length + 1
       }
       cardService.add(card).then(savedCard => {
-        cardList.cards.push({
-          id: savedCard.id,
-          title: savedCard.title
-        })
+        this.appendCardToList(cardList, savedCard)
         cardList.cardForm.title = ''
         this.focusCardForm(cardList)
       }).catch(error => {
@@ -223,12 +222,16 @@ export default {
     },
     openAddCardForm (cardList) {
       // Close other add card form
-      this.cardLists.forEach((cardList) => { cardList.cardForm.open = false })
+      this.cardLists.forEach((cardList) => {
+        cardList.cardForm.open = false
+      })
       cardList.cardForm.open = true
       this.focusCardForm(cardList)
     },
     focusCardForm (cardList) {
-      this.$nextTick(() => { $('#cardTitle' + cardList.id).trigger('focus') })
+      this.$nextTick(() => {
+        $('#cardTitle' + cardList.id).trigger('focus')
+      })
     },
     closeAddCardForm (cardList) {
       cardList.cardForm.open = false
@@ -264,7 +267,9 @@ export default {
         cardPositions: []
       }
       changedListIds.forEach(cardListId => {
-        const cardList = this.cardLists.filter(cardList => { return cardList.id === parseInt(cardListId) })[0]
+        const cardList = this.cardLists.filter(cardList => {
+          return cardList.id === parseInt(cardListId)
+        })[0]
         cardList.cards.forEach((card, index) => {
           positionChanges.cardPositions.push({
             cardListId: cardListId,
@@ -277,7 +282,32 @@ export default {
         notify.error(error.message)
       })
     },
-    onRealTimeUpdated (updates) {
+    onRealTimeUpdated (update) {
+      console.log('[BoardPage] Real time update received', update)
+      if (update.type === 'cardAdded') {
+        this.onCardAdded(update.card)
+      }
+    },
+    onCardAdded (card) {
+      const cardList = this.cardLists.filter(cardList => {
+        return cardList.id === card.cardListId
+      })[0]
+      if (!cardList) {
+        console.warn('No card list found by id ' + card.cardListId)
+        return
+      }
+      this.appendCardToList(cardList, card)
+    },
+    appendCardToList (cardList, card) {
+      const existingIndex = cardList.cards.findIndex(existingCard => {
+        return existingCard.id === card.id
+      })
+      if (existingIndex === -1) {
+        cardList.cards.push({
+          id: card.id,
+          title: card.title
+        })
+      }
     }
   }
 }

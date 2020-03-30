@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class RegistrationManagementTest {
+class RegistrationManagementTests {
 
     private UserRepository repositoryMock;
     private PasswordEncryptor passwordEncryptorMock;

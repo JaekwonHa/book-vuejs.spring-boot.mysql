@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-class DefaultMailManagerTest {
+class DefaultMailManagerTests {
 
     @TestConfiguration
     static class DefaultMessageCreatorConfiguration {

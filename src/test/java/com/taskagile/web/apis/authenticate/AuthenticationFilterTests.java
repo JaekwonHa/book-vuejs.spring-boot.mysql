@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
-class AuthenticationFilterTest {
+class AuthenticationFilterTests {
 
     @MockBean
     private AuthenticationManager authenticationManagerMock;

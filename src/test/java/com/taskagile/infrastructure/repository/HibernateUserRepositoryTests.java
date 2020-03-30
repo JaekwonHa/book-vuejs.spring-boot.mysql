@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @ActiveProfiles("test")
-class HibernateUserRepositoryTest {
+class HibernateUserRepositoryTests {
 
     @TestConfiguration
     public static class UserRepositoryTestContextConfiguration {

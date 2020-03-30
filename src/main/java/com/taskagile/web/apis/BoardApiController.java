@@ -1,6 +1,9 @@
 package com.taskagile.web.apis;
 
-import com.taskagile.domain.application.*;
+import com.taskagile.domain.application.BoardService;
+import com.taskagile.domain.application.CardListService;
+import com.taskagile.domain.application.CardService;
+import com.taskagile.domain.application.TeamService;
 import com.taskagile.domain.common.security.CurrentUser;
 import com.taskagile.domain.model.board.Board;
 import com.taskagile.domain.model.board.BoardId;
@@ -32,7 +35,6 @@ public class BoardApiController {
     private TeamService teamService;
     private CardListService cardListService;
     private CardService cardService;
-    private UserService userService;
 
     public BoardApiController(BoardService boardService,
                               TeamService teamService,
