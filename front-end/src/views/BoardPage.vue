@@ -99,40 +99,18 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    boardService.getBoard(to.params.boardId).then(data => {
-      next(vm => {
-        vm.team.name = data.team ? data.team.name : ''
-        vm.board.id = data.board.id
-        vm.board.personal = data.board.personal
-        vm.board.name = data.board.name
-        data.members.forEach(member => {
-          vm.members.push({
-            id: member.userId,
-            shortName: member.shortName
-          })
-        })
-        data.cardLists.sort((list1, list2) => {
-          return list1.position - list2.position
-        })
-        data.cardLists.forEach(cardList => {
-          cardList.cards.sort((card1, card2) => {
-            return card1.position - card2.position
-          })
-          vm.cardLists.push({
-            id: cardList.id,
-            name: cardList.name,
-            cards: cardList.cards,
-            cardForm: {
-              open: false,
-              title: ''
-            }
-          })
-        })
-        vm.$rt.subscribe('/board/' + vm.board.id, vm.onRealTimeUpdated)
-      })
-    }).catch(error => {
-      notify.error(error.message)
+    next(vm => {
+      vm.loadBoard()
     })
+  },
+  beforeRouteUpdate (to, from, next) {
+    next()
+    this.unsubscribeFromRealTimeUpdate()
+    this.loadBoard()
+  },
+  beforeRouteLeave (to, from, next) {
+    next()
+    this.unsubscribeFromRealTimeUpdate()
   },
   mounted () {
     this.$el.addEventListener('click', this.dismissActiveForms)
@@ -142,6 +120,46 @@ export default {
     this.$rt.unsubscribe('/board/' + this.board.id, this.onRealTimeUpdated)
   },
   methods: {
+    loadBoard () {
+      console.log('[BoardPage] Loading board')
+      boardService.getBoard(this.$route.params.boardId).then(data => {
+        this.team.name = data.team ? data.team.name : ''
+        this.board.id = data.board.id
+        this.board.personal = data.board.personal
+        this.board.name = data.board.name
+
+        this.members.splice(0)
+        data.members.forEach(member => {
+          this.members.push({
+            id: member.userId,
+            shortName: member.shortName
+          })
+        })
+
+        this.cardLists.splice(0)
+
+        data.cardLists.sort((list1, list2) => {
+          return list1.position - list2.position
+        })
+        data.cardLists.forEach(cardList => {
+          cardList.cards.sort((card1, card2) => {
+            return card1.position - card2.position
+          })
+          this.cardLists.push({
+            id: cardList.id,
+            name: cardList.name,
+            cards: cardList.cards,
+            cardForm: {
+              open: false,
+              title: ''
+            }
+          })
+        })
+        this.subscribeToRealTimUpdate()
+      }).catch(error => {
+        notify.error(error.message)
+      })
+    },
     dismissActiveForms (event) {
       console.log('dismissing forms')
       let dismissAddCardForm = true
@@ -308,6 +326,12 @@ export default {
           title: card.title
         })
       }
+    },
+    subscribeToRealTimUpdate () {
+      this.$rt.subscribe('/board/' + this.board.id, this.onRealTimeUpdated)
+    },
+    unsubscribeFromRealTimeUpdate () {
+      this.$rt.unsubscribe('/board/' + this.board.id, this.onRealTimeUpdated)
     }
   }
 }
