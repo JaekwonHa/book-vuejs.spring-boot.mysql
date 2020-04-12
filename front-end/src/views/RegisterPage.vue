@@ -60,7 +60,9 @@
               <a place="privacyPolicy" href="#">{{ $t('registerPage.form.terms.privacyPolicy') }}</a>
             </i18n>
           </p>
-          <p class="text-center text-muted">{{ $t('registerPage.form.alreadyHaveAccount') }} <router-link to="login">{{ $t("registerPage.form.signIn") }}</router-link></p>
+          <p class="text-center text-muted">{{ $t('registerPage.form.alreadyHaveAccount') }}
+            <router-link to="login">{{ $t("registerPage.form.signIn") }}</router-link>
+          </p>
         </form>
       </div>
     </div>

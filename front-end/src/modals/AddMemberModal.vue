@@ -32,6 +32,7 @@
 import $ from 'jquery'
 import { required } from 'vuelidate/lib/validators'
 import boardService from '@/services/boards'
+
 export default {
   name: 'AddMemberModal',
   props: ['boardId'],

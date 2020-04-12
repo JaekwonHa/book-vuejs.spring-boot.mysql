@@ -1,6 +1,6 @@
-import { mount, createLocalVue } from "@vue/test-utils";
-import Vuelidate from "vuelidate";
-import VueRouter from "vue-router";
+import { mount, createLocalVue } from '@vue/test-utils'
+import Vuelidate from 'vuelidate'
+import VueRouter from 'vue-router'
 import LoginPage from '@/views/LoginPage.vue'
 import authenticationService from '@/services/authentication'
 import { i18n } from '@/i18n'
@@ -46,19 +46,19 @@ describe('LoginPage.vue', () => {
   })
 
   it('should render login form', function () {
-    expect(wrapper.find('.logo').attributes().src)      .toEqual('/images/logo.png')
+    expect(wrapper.find('.logo').attributes().src).toEqual('/images/logo.png')
     expect(wrapper.find('.tagline').text()).toEqual('Open source task management tool')
     expect(fieldUsername.element.value).toEqual('')
     expect(fieldPassword.element.value).toEqual('')
     expect(buttonSubmit.text()).toEqual('Sign in')
     expect(wrapper.find('.link-sign-up').attributes().href).toEqual('/register')
     expect(wrapper.find('.link-forgot-password')).toBeTruthy()
-  });
+  })
 
   it('should contain data model with initial values', function () {
     expect(wrapper.vm.form.username).toEqual('')
     expect(wrapper.vm.form.password).toEqual('')
-  });
+  })
 
   it('should have form inputs bound with data model', async function () {
     const username = 'sunny'
@@ -71,14 +71,14 @@ describe('LoginPage.vue', () => {
 
     expect(fieldUsername.element.value).toEqual(username)
     expect(fieldPassword.element.value).toEqual(password)
-  });
+  })
 
   it('should have form submit event handler', function () {
     const stub = jest.fn()
     wrapper.setMethods({ submitForm: stub })
     buttonSubmit.trigger('submit')
     expect(stub).toBeCalled()
-  });
+  })
 
   it('should succeed when credentials are valid', async function () {
     expect.assertions(2)
@@ -91,8 +91,8 @@ describe('LoginPage.vue', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(stub).toHaveBeenCalledWith({name: 'home'})
-  });
+    expect(stub).toHaveBeenCalledWith({ name: 'home' })
+  })
 
   it('should fail when credentials are invalid', async function () {
     expect.assertions(3)
@@ -105,7 +105,7 @@ describe('LoginPage.vue', () => {
     expect(authenticateSpy).toBeCalled()
     await wrapper.vm.$nextTick()
     expect(wrapper.find('.failed').isVisible()).toBe(true)
-  });
+  })
 
   it('should have validation to prevent invalid data submit', () => {
     // Empty form

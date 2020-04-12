@@ -1,7 +1,7 @@
 <template>
   <div class="page-header d-flex align-content-center">
     <div class="logo" @click="goHome()">
-      <font-awesome-icon icon="home" class="home-icon" />
+      <font-awesome-icon icon="home" class="home-icon"/>
       <img src="/images/logo.png">
     </div>
     <div class="boards-menu-toggle">
@@ -24,8 +24,8 @@
     </div>
     <div class="search-box flex-fill">
       <div class="search-wrapper">
-        <font-awesome-icon icon="search" class="search-icon" />
-        <input type="text" v-bind:placeholder="$t('header.search')" class="form-control form-control-sm" />
+        <font-awesome-icon icon="search" class="search-icon"/>
+        <input type="text" v-bind:placeholder="$t('header.search')" class="form-control form-control-sm"/>
       </div>
     </div>
     <div class="profile-menu-toggle">
@@ -89,16 +89,19 @@ export default {
     flex: none;
     padding: 9px 10px 8px;
     border-bottom: 1px solid #eee;
+
     .logo {
       color: #444;
       height: 25px;
       width: 115px;
       margin-top: 2px;
       cursor: pointer;
+
       .home-icon {
         font-size: 20px;
         vertical-align: middle;
       }
+
       img {
         margin-left: 5px;
         margin-top: 6px;
@@ -107,26 +110,31 @@ export default {
         /*vertical-align: bottom;*/
       }
     }
+
     .boards-menu-toggle {
       padding-left: 20px;
       width: 100px;
     }
+
     .profile-menu-toggle {
       width: 215px;
       text-align: right;
     }
+
     .search-box {
       .search-wrapper {
         width: 300px;
         margin: 0 auto;
         position: relative;
       }
+
       .search-icon {
         position: absolute;
         top: 8px;
         left: 8px;
         color: #666;
       }
+
       input {
         padding-left: 30px;
         height: calc(1.8125rem + 5px);
@@ -136,6 +144,7 @@ export default {
       }
     }
   }
+
   .dropdown-toggle {
     padding: 2px 5px !important;
   }

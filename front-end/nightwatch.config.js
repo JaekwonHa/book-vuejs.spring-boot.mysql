@@ -5,12 +5,12 @@ module.exports = {
     },
     chrome: {
       desiredCapabilities: {
-        browserName: "chrome",
-          chromeOptions: {
-          args: ["headless", "no-sandbox", "disable-gpu"]
+        browserName: 'chrome',
+        chromeOptions: {
+          args: ['headless', 'no-sandbox', 'disable-gpu']
         }
       }
     }
   },
-  page_objects_path: 'tests/e2e/page-objects',
+  page_objects_path: 'tests/e2e/page-objects'
 }

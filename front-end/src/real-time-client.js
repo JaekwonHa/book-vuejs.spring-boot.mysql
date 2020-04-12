@@ -10,6 +10,7 @@ class RealTimeClient {
     // If the client is authenticated through real time connection or not
     this.authenticated = false
     this.loggedOut = false
+    this.triedAttemps = 0
     this.$bus = new Vue()
     this.subscribeQueue = {
       /* channel: [handler1, handler2] */
@@ -96,6 +97,7 @@ class RealTimeClient {
   }
 
   _onConnected () {
+    this.triedAttemps = 0
     globalBus.$emit('RealTimeClient.connected')
     console.log('[RealTimeClient] Connected')
 
@@ -127,6 +129,10 @@ class RealTimeClient {
       console.log('[RealTimeClient] Logged out')
       globalBus.$emit('RealTimeClient.loggedOut')
     } else {
+      if (this.triedAttemps > 30) {
+        console.log('[RealTimeClient] Fail to connect to the server')
+        return
+      }
       // Temporarily disconnected, attempt reconnect
       console.log('[RealTimeClient] Reconnecting')
       globalBus.$emit('RealTimeClient.disconnected')

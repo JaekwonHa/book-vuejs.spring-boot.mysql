@@ -32,6 +32,7 @@
 import $ from 'jquery'
 import { required } from 'vuelidate/lib/validators'
 import teamService from '@/services/teams'
+
 export default {
   name: 'CreateTeamModal',
   data () {

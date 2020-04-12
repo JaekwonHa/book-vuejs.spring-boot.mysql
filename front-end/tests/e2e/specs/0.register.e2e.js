@@ -6,7 +6,7 @@ const rw = require('rw')
 const user = {}
 
 module.exports = {
-  before: function() {
+  before: function () {
     const userDataPath = path.resolve('tests/e2e/data/user.js')
     del.sync([userDataPath])
     // Generating user data
@@ -14,7 +14,7 @@ module.exports = {
     const name = chance.name().split(' ')
     user.firstName = name[0]
     user.lastName = name[1]
-    user.username = name[0].toLowerCase() + chance.integer({min: 0, max: 1000000})
+    user.username = name[0].toLowerCase() + chance.integer({ min: 0, max: 1000000 })
     user.emailAddress = user.username + '@e2e.taskagile.com'
     user.password = 'MyPassword!'
 

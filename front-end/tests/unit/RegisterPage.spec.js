@@ -95,7 +95,7 @@ describe('RegisterPage.vue', () => {
 
   it('should have form submit event handler `submitForm`', () => {
     const stub = jest.fn()
-    wrapper.setMethods({submitForm: stub})
+    wrapper.setMethods({ submitForm: stub })
     buttonSubmit.trigger('submit')
     expect(stub).toBeCalled()
   })
@@ -112,7 +112,7 @@ describe('RegisterPage.vue', () => {
     wrapper.vm.submitForm()
     expect(registerSpy).toBeCalled()
     await wrapper.vm.$nextTick()
-    expect(stub).toHaveBeenCalledWith({name: 'login'})
+    expect(stub).toHaveBeenCalledWith({ name: 'login' })
   })
 
   it('should fail it is not a new user', async () => {
@@ -160,7 +160,6 @@ describe('RegisterPage.vue', () => {
     expect(registerSpy).not.toHaveBeenCalled()
   })
 
-
   it('should fail when the first name is invalid', () => {
     wrapper.vm.form.username = 'test'
     wrapper.vm.form.emailAddress = 'test@taskagile.com'
@@ -170,7 +169,6 @@ describe('RegisterPage.vue', () => {
     wrapper.vm.submitForm()
     expect(registerSpy).not.toHaveBeenCalled()
   })
-
 
   it('should fail when the last name is invalid', () => {
     wrapper.vm.form.username = 'test'

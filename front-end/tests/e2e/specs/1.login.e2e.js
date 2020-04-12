@@ -47,7 +47,7 @@ module.exports = {
     browser.end()
   },
   'login with email address': function (browser) {
-  const loginPage = browser.page.LoginPage()
+    const loginPage = browser.page.LoginPage()
     const homePage = browser.page.HomePage()
 
     loginPage
@@ -61,5 +61,5 @@ module.exports = {
       .assert.visible('@logoImage')
 
     browser.end()
-  },
+  }
 }
