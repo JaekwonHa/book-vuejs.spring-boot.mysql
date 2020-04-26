@@ -1,7 +1,7 @@
 # 실전! 스프링 5와 Vue.js 2로 시작하는 모던 웹 애플리케이션 개발
 > 스프링 부트와 Vuex를 활용한 실습 중심의 풀스택 웹 애플리케이션 개발
 
-![book-cover](book-contents/assets/book-cover.jpeg)
+<img src="book-contents/assets/book-cover.jpeg" witdh=300 height=400>
 
 # contents
 * [chapter02 - Vue.js 2 - 기대한 방식으로 동작한다](book-contents/chapter02)
