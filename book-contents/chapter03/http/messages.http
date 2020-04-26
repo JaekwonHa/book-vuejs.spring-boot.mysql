@@ -1,0 +1,9 @@
+###
+POST {{host}}/messages
+Content-Type: application/json
+
+{
+  "text": "Add message here"
+}
+
+###
