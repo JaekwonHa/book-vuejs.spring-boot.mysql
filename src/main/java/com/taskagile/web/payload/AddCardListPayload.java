@@ -10,8 +10,8 @@ public class AddCardListPayload {
     private String name;
     private int position;
 
-    public AddCardListCommand toCommand(UserId userId) {
-        return new AddCardListCommand(new BoardId(boardId), userId, name, position);
+    public AddCardListCommand toCommand() {
+        return new AddCardListCommand(new BoardId(boardId), name, position);
     }
 
     public void setName(String name) {

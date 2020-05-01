@@ -1,7 +1,7 @@
 package com.taskagile.domain.application.impl;
 
 import com.taskagile.domain.application.UserService;
-import com.taskagile.domain.application.commands.RegistrationCommand;
+import com.taskagile.domain.application.commands.RegisterCommand;
 import com.taskagile.domain.common.event.DomainEventPublisher;
 import com.taskagile.domain.common.mail.MailManager;
 import com.taskagile.domain.common.mail.MessageVariable;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(RegistrationCommand command) throws RegistrationException {
+    public void register(RegisterCommand command) throws RegistrationException {
         Assert.notNull(command, "Parameter `commend` must not be null");
         User newUser = registrationManagement.register(
             command.getUsername(),
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
             command.getPassword());
 
         SendWelcomeMessage(newUser);
-        domainEventPublisher.publish(new UserRegisteredEvent(this, newUser));
+        domainEventPublisher.publish(new UserRegisteredEvent(newUser, command));
     }
 
     private void SendWelcomeMessage(User user) {

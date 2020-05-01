@@ -2,18 +2,12 @@ package com.taskagile.domain.application.commands;
 
 import com.taskagile.domain.model.user.UserId;
 
-public class CreateTeamCommand {
+public class CreateTeamCommand extends UserCommand {
 
-    private UserId userId;
     private String name;
 
-    public CreateTeamCommand(UserId userId, String name) {
-        this.userId = userId;
+    public CreateTeamCommand(String name) {
         this.name = name;
-    }
-
-    public UserId getUserId() {
-        return userId;
     }
 
     public String getName() {

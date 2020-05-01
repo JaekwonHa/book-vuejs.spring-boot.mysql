@@ -12,8 +12,8 @@ public class AddCardPayload {
     private String title;
     private int position;
 
-    public AddCardCommand toCommand(UserId userId) {
-        return new AddCardCommand(new CardListId(cardListId), userId, title, position);
+    public AddCardCommand toCommand() {
+        return new AddCardCommand(new CardListId(cardListId), title, position);
     }
 
     public BoardId getBoardId() {

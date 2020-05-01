@@ -10,8 +10,8 @@ public class CreateBoardPayload {
     private String description;
     private long teamId;
 
-    public CreateBoardCommand toCommand(UserId userId) {
-        return new CreateBoardCommand(userId, name, description, new TeamId(teamId));
+    public CreateBoardCommand toCommand() {
+        return new CreateBoardCommand(name, description, new TeamId(teamId));
     }
 
     public void setName(String name) {

@@ -8,8 +8,8 @@ public class AddCardCommentPayload {
 
     private String comment;
 
-    public AddCardCommentCommand toCommand(CardId cardId, UserId userId) {
-        return new AddCardCommentCommand(cardId, comment, userId);
+    public AddCardCommentCommand toCommand(CardId cardId) {
+        return new AddCardCommentCommand(cardId, comment);
     }
 
     public void setComment(String comment) {
