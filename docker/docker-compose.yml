@@ -16,10 +16,24 @@ services:
       - '3306:3306'
     volumes:
       - task_agile_mysql_data:/var/lib/mysql
+  taskagile_rabbitmq:
+    image: 'rabbitmq:3.6-management-alpine'
+    ports:
+      # The standard AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    environment:
+        RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+        RABBITMQ_DEFAULT_USER: "app_user"
+        RABBITMQ_DEFAULT_PASS: "GxweRTK"
+        RABBITMQ_DEFAULT_VHOST: "/"
+#    volumes:
+#      - ./enabled_plugins:/etc/rabbitmq/enabled_plugins
 
 secrets:
   mysql_secret:
-    file: mysql_secret
+    file: ./mysql/mysql_secret
 
 volumes:
   task_agile_mysql_data:
