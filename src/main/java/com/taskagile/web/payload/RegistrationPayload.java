@@ -29,16 +29,20 @@ public class RegistrationPayload {
     @NotNull
     private String password;
 
-    public RegistrationPayload(@Size(min = 2, max = 50, message = "Username must be between 2 and 50 characters") @NotNull String username, @Email(message = "Email address should be valid") @Size(max = 100, message = "Email address must not be more than 100 characters") @NotNull String emailAddress, @Size(min = 1, max = 45, message = "First name must be between 1 and 45 characters") @NotNull String firstName, @Size(min = 1, max = 45, message = "Last name must be between 1 and 45 characters") @NotNull String lastName, @Size(min = 6, max = 30, message = "Password must be between 6 and 30 characters") @NotNull String password) {
-        this.username = username;
-        this.emailAddress = emailAddress;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
-
     public RegisterCommand toCommand() {
         return new RegisterCommand(this.username, this.emailAddress, this.firstName, this.lastName, this.password);
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {
