@@ -82,7 +82,7 @@
               <div class="wrapper-body">
                 <div class="activity" v-for="activity in cardActivities" v-bind:key="activity.id">
                   <div><strong>{{ activity.user.name }}</strong> <span class="when">{{ activity.when }} ago</span></div>
-                  <div class="detail">{{ activity.detail.comment }}</div>
+                  <div class="detail" :class="activity.type">{{ activity.actionDetail }}</div>
                 </div>
               </div>
             </div>
@@ -166,9 +166,23 @@ export default {
       const now = new Date()
       this.activities.forEach(activity => {
         const detail = JSON.parse(activity.detail)
+        let actionDetail = ''
+        if (activity.type === 'add-comment') {
+          actionDetail = detail.comment
+        } else if (activity.type === 'add-card') {
+          actionDetail = 'Added this card'
+        } else if (activity.type === 'add-attachment') {
+          actionDetail = 'Added attachment ' + detail.fileName
+        } else if (activity.type === 'change-card-description') {
+          actionDetail = 'Changed card description'
+        } else if (activity.type === 'change-card-title') {
+          actionDetail = 'Changed card title'
+        }
+
         cardActivities.push({
           user: userById[activity.userId],
-          detail: detail,
+          type: activity.type,
+          actionDetail: actionDetail,
           when: formatDistance(new Date(activity.createdDate), now),
           createDate: activity.createDate
         })
@@ -277,6 +291,13 @@ export default {
     onAttachmentUploaded (attachment) {
       this.uploadingCount--
       this.attachments.push(attachment)
+      if (!this.card.coverImage && attachment.previewUrl) {
+        this.$emit('coverImageChanged', {
+          cardId: this.card.id,
+          cardListId: this.cardList.id,
+          coverImage: attachment.previewUrl
+        })
+      }
     },
     when (createdDate) {
       return formatDistance(new Date(createdDate), new Date())
@@ -496,6 +517,15 @@ export default {
                 display: inline-block;
                 padding: .2rem 0;
                 margin-bottom: .5rem;
+                color: #666;
+              }
+              .detail.add-comment {
+                color: #000;
+                padding: 2px 5px;
+                border: 1px solid #eee;
+                background: #f4f4f4;
+                border-radius: 3px;
+                margin-top: .2rem;
               }
             }
           }

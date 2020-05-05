@@ -21,3 +21,5 @@ ALTER TABLE `task_agile`.`activity` ADD COLUMN `ip_address` VARCHAR(64) CHARACTE
 ALTER TABLE `task_agile`.`attachment` CHANGE COLUMN `file_type` `file_type` VARCHAR(32) NOT NULL DEFAULT ''  COMMENT '' AFTER `file_path`;
 -- Add thumbnail_created to attachment
 ALTER TABLE `task_agile`.`attachment` ADD COLUMN `thumbnail_created` TINYINT(1) NOT NULL DEFAULT 0 AFTER `file_type`;
+-- Add `cover_image` to `card`
+ALTER TABLE `task_agile`.`card` ADD COLUMN `cover_image` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL AFTER `position`;

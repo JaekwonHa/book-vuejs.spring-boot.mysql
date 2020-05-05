@@ -32,6 +32,7 @@
                     animation: 0, scrollSensitivity: 100, touchStartThreshold: 20}"
                              v-bind:data-list-id="cardList.id">
                     <div class="card-item" v-for="card in cardList.cards" v-bind:key="card.id" @click="openCard(card)">
+                      <div class="cover-image" v-if="card.coverImage"><img :src="card.coverImage" /></div>
                       <div class="card-title">{{ card.title }}</div>
                     </div>
                     <div class="add-card-form-wrapper" v-if="cardList.cardForm.open">
@@ -70,7 +71,8 @@
       :card="openedCard"
       :cardList="focusedCardList"
       :board="board"
-      :members="members"/>
+      :members="members"
+      @coverImageChanged="updateCardCoverImage"/>
   </div>
 </template>
 
@@ -403,6 +405,15 @@ export default {
     closeCardWindow () {
       console.log('[BoardPage] Close card window ' + this.openedCard.id)
       $('#cardModal').modal('hide')
+    },
+    updateCardCoverImage (change) {
+      const cardList = this.cardLists.find(cardList => {
+        return cardList.id === change.cardListId
+      })
+      const card = cardList.cards.find(card => {
+        return card.id === change.cardId
+      })
+      card.coverImage = change.coverImage
     }
   }
 }
@@ -580,8 +591,12 @@ export default {
                     box-shadow: 0 1px 0 #ccc;
                     cursor: pointer;
 
+                    .cover-image img {
+                      max-width: 256px;
+                    }
+
                     .card-title {
-                      margin: 0;
+                      margin: 5px 8px;
 
                       a {
                         color: #333;

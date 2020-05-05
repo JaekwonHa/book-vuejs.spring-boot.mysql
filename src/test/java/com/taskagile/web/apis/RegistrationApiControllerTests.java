@@ -42,7 +42,12 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_existsUsername_shouldFailAndReturn400() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("exist", "test@tasksgile.com", "User", "Test", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload();
+        payload.setUsername("exist");
+        payload.setEmailAddress("test@taskagile.com");
+        payload.setPassword("MyPassword!");
+        payload.setFirstName("User");
+        payload.setLastName("Test");
 
         doThrow(UsernameExistsException.class)
             .when(serviceMock)
@@ -58,7 +63,12 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_existsEmail_shouldFailAndReturn400() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("userName", "exists@tasksgile.com", "User", "Test", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload();
+        payload.setUsername("test");
+        payload.setEmailAddress("exist@taskagile.com");
+        payload.setPassword("MyPassword!");
+        payload.setFirstName("User");
+        payload.setLastName("Test");
 
         doThrow(EmailAddressExistsException.class)
             .when(serviceMock)
@@ -74,7 +84,12 @@ class RegistrationApiControllerTests {
 
     @Test
     public void register_validPayload_shouldSucceedAndReturn201() throws Exception {
-        RegistrationPayload payload = new RegistrationPayload("sunny", "sunny@tasksgile.com", "User", "Test", "MyPassword!");
+        RegistrationPayload payload = new RegistrationPayload();
+        payload.setUsername("sunny");
+        payload.setEmailAddress("sunny@taskagile.com");
+        payload.setPassword("MyPassword!");
+        payload.setFirstName("User");
+        payload.setLastName("Test");
 
         doNothing().when(serviceMock)
             .register(payload.toCommand());

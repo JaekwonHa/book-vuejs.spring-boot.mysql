@@ -39,15 +39,18 @@ public class BoardApiController extends AbstractBaseController {
     private TeamService teamService;
     private CardListService cardListService;
     private CardService cardService;
+    private FileUrlCreator fileUrlCreator;
 
     public BoardApiController(BoardService boardService,
                               TeamService teamService,
                               CardListService cardListService,
-                              CardService cardService) {
+                              CardService cardService,
+                              FileUrlCreator fileUrlCreator) {
         this.boardService = boardService;
         this.teamService = teamService;
         this.cardListService = cardListService;
         this.cardService = cardService;
+        this.fileUrlCreator = fileUrlCreator;
     }
 
     @PostMapping("/api/boards")
@@ -77,7 +80,7 @@ public class BoardApiController extends AbstractBaseController {
         List<CardList> cardLists = cardListService.findByBoardId(boardId);
         List<Card> cards = cardService.findByBoardId(boardId);
 
-        return BoardResult.build(team, board, members, cardLists, cards);
+        return BoardResult.build(team, board, members, cardLists, cards, fileUrlCreator);
     }
 
     @PostMapping("/api/boards/{boardId}/members")
