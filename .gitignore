@@ -40,3 +40,5 @@ src/main/resources/static/js/
 src/main/resources/templates/index.html
 spy.log
 data/
+
+docker/*.jar
